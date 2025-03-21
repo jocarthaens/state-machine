@@ -1,0 +1,530 @@
+[gd_scene load_steps=27 format=3 uid="uid://cdgxxv2fm7w77"]
+
+[ext_resource type="Texture2D" uid="uid://duri2bnsyf4bs" path="res://sprites/fungant_.png" id="1_s8kbj"]
+[ext_resource type="Texture2D" uid="uid://b868guushsvup" path="res://sprites/fungant_fume.png" id="2_nggvq"]
+[ext_resource type="Script" path="res://scripts/fungant/fungant_state_manager.gd" id="4_nx2su"]
+[ext_resource type="Script" path="res://scripts/fungant/fungant_idle_state.gd" id="5_wyhad"]
+[ext_resource type="Script" path="res://scripts/fungant/fungant_wander_state.gd" id="6_akys0"]
+[ext_resource type="Script" path="res://scripts/fungant/fungant_chase_state.gd" id="7_n3pag"]
+[ext_resource type="Script" path="res://scripts/fungant/fungant_fumigate_state.gd" id="8_8oolt"]
+[ext_resource type="Script" path="res://scripts/fungant/fungant_dormant_state.gd" id="9_m1ime"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_artx6"]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kp0mr"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tyclb"]
+radius = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xeqmk"]
+radius = 16.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_stfqr"]
+font_size = 8
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="Animation" id="Animation_gsw1s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FumeArea/FumeSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FumeArea/FumeShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtBox/HurtArea:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sensor/SensorShape:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dnvb6"]
+resource_name = "dormant"
+length = 0.6667
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox/HurtArea:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sensor/SensorShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_robj6"]
+resource_name = "attack_right"
+length = 1.6667
+step = 0.0833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3332, 0.833333, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [44, 45, 46, 46, 47]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FumeArea/FumeSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667, 0.25, 0.333333, 0.833333, 1, 1.16667, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FumeArea/FumeShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.833333, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_3x08g"]
+resource_name = "attack_right"
+length = 1.6667
+step = 0.0833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.833333, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 42, 43]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FumeArea/FumeSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667, 0.25, 0.333333, 0.833333, 1, 1.16667, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FumeArea/FumeShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.833333, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_1uuap"]
+resource_name = "idle_left"
+length = 0.6667
+loop_mode = 1
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox/HurtArea:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sensor/SensorShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_l4ppi"]
+length = 0.6667
+loop_mode = 1
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox/HurtArea:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sensor/SensorShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wclsi"]
+resource_name = "awake_left"
+length = 0.6667
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_hej6d"]
+resource_name = "awake_right"
+length = 0.6667
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_2if1y"]
+length = 0.6667
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [52, 53, 54]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FumeArea/FumeSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_njaf1"]
+length = 0.6667
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [48, 49, 50]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FumeArea/FumeSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1ci44"]
+length = 0.6667
+loop_mode = 1
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31]
+}
+
+[sub_resource type="Animation" id="Animation_3edu1"]
+length = 0.6667
+loop_mode = 1
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfn1t"]
+_data = {
+"RESET": SubResource("Animation_gsw1s"),
+"dormant": SubResource("Animation_dnvb6"),
+"fume_left": SubResource("Animation_robj6"),
+"fume_right": SubResource("Animation_3x08g"),
+"idle_left": SubResource("Animation_1uuap"),
+"idle_right": SubResource("Animation_l4ppi"),
+"rise_left": SubResource("Animation_wclsi"),
+"rise_right": SubResource("Animation_hej6d"),
+"sleep_left": SubResource("Animation_2if1y"),
+"sleep_right": SubResource("Animation_njaf1"),
+"walk_left": SubResource("Animation_1ci44"),
+"walk_right": SubResource("Animation_3edu1")
+}
+
+[node name="Fungant" type="CharacterBody2D"]
+
+[node name="ColliderBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_artx6")
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(0, -5)
+collision_layer = 8
+collision_mask = 2
+
+[node name="HurtArea" type="CollisionShape2D" parent="HurtBox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kp0mr")
+metadata/_edit_lock_ = true
+
+[node name="Sensor" type="Area2D" parent="."]
+position = Vector2(0, -4)
+collision_layer = 0
+collision_mask = 16
+
+[node name="SensorShape" type="CollisionShape2D" parent="Sensor"]
+shape = SubResource("CircleShape2D_tyclb")
+metadata/_edit_lock_ = true
+
+[node name="FumeArea" type="Area2D" parent="."]
+position = Vector2(0, -4)
+collision_layer = 32
+collision_mask = 0
+
+[node name="FumeShape" type="CollisionShape2D" parent="FumeArea"]
+shape = SubResource("CircleShape2D_xeqmk")
+disabled = true
+metadata/_edit_lock_ = true
+
+[node name="FumeSprite" type="Sprite2D" parent="FumeArea"]
+texture = ExtResource("2_nggvq")
+hframes = 7
+metadata/_edit_lock_ = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -3)
+target_position = Vector2(19, 0)
+
+[node name="StateText" type="Label" parent="."]
+offset_left = -33.0
+offset_top = -24.0
+offset_right = 33.0
+offset_bottom = -10.0
+text = "Text"
+label_settings = SubResource("LabelSettings_stfqr")
+horizontal_alignment = 1
+
+[node name="Sprites" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+texture = ExtResource("1_s8kbj")
+hframes = 8
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_gfn1t")
+}
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("fungant", "animator", "text_display")]
+unique_name_in_owner = true
+script = ExtResource("4_nx2su")
+fungant = NodePath("..")
+animator = NodePath("../AnimationPlayer")
+text_display = NodePath("../StateText")
+
+[node name="Idle" type="Node" parent="StateManager"]
+script = ExtResource("5_wyhad")
+
+[node name="Wander" type="Node" parent="StateManager"]
+script = ExtResource("6_akys0")
+
+[node name="Chase" type="Node" parent="StateManager"]
+script = ExtResource("7_n3pag")
+
+[node name="Fumigate" type="Node" parent="StateManager"]
+script = ExtResource("8_8oolt")
+
+[node name="Dormant" type="Node" parent="StateManager"]
+script = ExtResource("9_m1ime")
+
+[connection signal="area_entered" from="HurtBox" to="StateManager" method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="Sensor" to="StateManager" method="_on_sensor_area_entered"]
+[connection signal="area_exited" from="Sensor" to="StateManager" method="_on_sensor_area_exited"]

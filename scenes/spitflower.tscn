@@ -1,0 +1,301 @@
+[gd_scene load_steps=23 format=3 uid="uid://1m2s1o7ts71k"]
+
+[ext_resource type="Texture2D" uid="uid://ciyu10kh63l3k" path="res://sprites/spitflower.png" id="2_5btxj"]
+[ext_resource type="Script" path="res://scripts/spitflower/spitflower_state_manager.gd" id="2_jq7dr"]
+[ext_resource type="Script" path="res://scripts/spitflower/spitflower_idle_state.gd" id="3_44i0o"]
+[ext_resource type="Script" path="res://scripts/spitflower/spitflower_alert_state.gd" id="4_d2psm"]
+[ext_resource type="Script" path="res://scripts/spitflower/spitflower_spit_state.gd" id="4_khixe"]
+[ext_resource type="Script" path="res://scripts/spitflower/spitflower_dormant.gd" id="5_ebqrh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_artx6"]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kp0mr"]
+radius = 7.0
+height = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ynbb6"]
+radius = 128.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ikng"]
+font_size = 8
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="Animation" id="Animation_gsw1s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_4ouqx"]
+resource_name = "attack_left"
+length = 0.4167
+step = 0.0833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_7gffs"]
+resource_name = "attack_left"
+length = 0.1667
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_krbfa"]
+resource_name = "attack_left"
+step = 0.0833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [18, 17, 16, 15, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_cfub0"]
+resource_name = "attack_left"
+length = 1.3333
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001, 0.6668, 0.8335, 1.0002, 1.1669),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_w5jxr"]
+resource_name = "attack_left"
+length = 0.6667
+loop_mode = 1
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 6]
+}
+
+[sub_resource type="Animation" id="Animation_qowm1"]
+resource_name = "attack_left"
+length = 1.1667
+step = 0.0833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2499, 0.3332, 0.4165, 0.4998, 0.5831, 0.6664, 0.7497, 0.833, 0.9163, 0.9996, 1.0829),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]
+}
+
+[sub_resource type="Animation" id="Animation_bbilj"]
+resource_name = "attack_left"
+length = 1.1667
+step = 0.0833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83]
+}
+
+[sub_resource type="Animation" id="Animation_dxj6m"]
+resource_name = "attack_left"
+length = 1.1667
+step = 0.0833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2499, 0.3332, 0.4165, 0.4998, 0.5831, 0.6664, 0.7497, 0.833, 0.9163, 0.9996, 1.0829),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
+}
+
+[sub_resource type="Animation" id="Animation_sf7y0"]
+resource_name = "attack_left"
+length = 1.1667
+step = 0.0833
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1666, 0.2499, 0.3332, 0.4165, 0.4998, 0.5831, 0.6664, 0.7497, 0.833, 0.9163, 0.9996, 1.0829),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55]
+}
+
+[sub_resource type="Animation" id="Animation_dly55"]
+resource_name = "attack_left"
+length = 0.8333
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [18, 17, 16, 15, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfn1t"]
+_data = {
+"RESET": SubResource("Animation_gsw1s"),
+"alert": SubResource("Animation_4ouqx"),
+"dormant": SubResource("Animation_7gffs"),
+"eliminated": SubResource("Animation_krbfa"),
+"grow": SubResource("Animation_cfub0"),
+"idle": SubResource("Animation_w5jxr"),
+"retract": SubResource("Animation_dly55"),
+"spit_down": SubResource("Animation_qowm1"),
+"spit_left": SubResource("Animation_bbilj"),
+"spit_right": SubResource("Animation_dxj6m"),
+"spit_up": SubResource("Animation_sf7y0")
+}
+
+[node name="Spitflower" type="StaticBody2D"]
+collision_layer = 0
+
+[node name="ColliderBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_artx6")
+
+[node name="HurtBox" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -6)
+collision_layer = 8
+collision_mask = 2
+
+[node name="HurtArea" type="CollisionShape2D" parent="HurtBox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kp0mr")
+metadata/_edit_lock_ = true
+
+[node name="Sensor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensor"]
+shape = SubResource("CircleShape2D_ynbb6")
+metadata/_edit_lock_ = true
+
+[node name="Sprites" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -19)
+texture = ExtResource("2_5btxj")
+hframes = 14
+vframes = 6
+frame = 18
+region_enabled = true
+region_rect = Rect2(0, 96, 896, 288)
+
+[node name="StateText" type="Label" parent="."]
+offset_left = -33.0
+offset_top = -36.0
+offset_right = 33.0
+offset_bottom = -22.0
+text = "Text"
+label_settings = SubResource("LabelSettings_7ikng")
+horizontal_alignment = 1
+
+[node name="AttackMarker" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gfn1t")
+}
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("spitflower", "animator", "text_display")]
+unique_name_in_owner = true
+script = ExtResource("2_jq7dr")
+spitflower = NodePath("..")
+animator = NodePath("../AnimationPlayer")
+text_display = NodePath("../StateText")
+
+[node name="Idle" type="Node" parent="StateManager"]
+script = ExtResource("3_44i0o")
+
+[node name="Alert" type="Node" parent="StateManager"]
+script = ExtResource("4_d2psm")
+
+[node name="Spit" type="Node" parent="StateManager"]
+script = ExtResource("4_khixe")
+
+[node name="Dormant" type="Node" parent="StateManager"]
+script = ExtResource("5_ebqrh")
+
+[connection signal="area_entered" from="HurtBox" to="StateManager" method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="Sensor" to="StateManager" method="_on_sensor_area_entered"]
+[connection signal="area_exited" from="Sensor" to="StateManager" method="_on_sensor_area_exited"]
