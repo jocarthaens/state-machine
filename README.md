@@ -8,3 +8,9 @@ A custom implementation of state machine AI framework.
 
 ## Demo
 Included in this project is a demo about a playable character in a dangerous area where roaming fungants and spitting flowers reign over the boglands. This demo displays both the player's and npc's current state when performing actions. To control the player, use arrow keys to move in 8 directions, press ctrl key to roll, and space/enter to attack enemies with a sword.
+
+---
+![state_mach1](https://github.com/user-attachments/assets/882222bb-4abd-42b6-95f2-a09ff865c329)
+---
+![state_mach2](https://github.com/user-attachments/assets/4c72baed-eab5-4206-8600-81d58ad4fa81)
+---
